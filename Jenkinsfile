@@ -21,7 +21,13 @@ pipeline {
             }
         }
 
-
+        stage('Deployment') {
+            steps {
+                // Deploy to Tomcat using the Tomcat Deploy plugin
+                deploy adapters: [tomcat9(credentialsId: 'f9a173d1-f0d7-4723-8812-b16d93f458f0', path: '', url: 'http://localhost:8080/')], contextPath: 'pipline_test', onFailure: false, war: '**/*.war'
+            }
+        }
+    }
 
     post {
         success {
