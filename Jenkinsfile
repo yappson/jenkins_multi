@@ -10,10 +10,10 @@ pipeline {
         stage('git') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/yappson/jenkins_test2'
+                git branch: 'main', url: 'https://github.com/yappson/jenkins_multi.git'
             }
         }
-        
+
         stage('Build') {
             steps {
                 // Run Maven build
@@ -21,12 +21,7 @@ pipeline {
             }
         }
 
-        stage('Deployment') {
-            steps {
-                // Deploy to Tomcat using the Tomcat Deploy plugin
-                deploy adapters: [tomcat9(credentialsId: 'f9a173d1-f0d7-4723-8812-b16d93f458f0', path: '', url: 'http://localhost:8080/')], contextPath: 'pipline_test', onFailure: false, war: '**/*.war'
-            }
-        }
+
     }
 
     post {
@@ -41,3 +36,4 @@ pipeline {
         }
     }
 }
+//final
